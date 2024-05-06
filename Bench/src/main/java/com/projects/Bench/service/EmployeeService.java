@@ -14,4 +14,8 @@ public interface EmployeeService {
 	public ResponseEntity<List<Employee>> getAllEmployee();
 	
 	public ResponseEntity<String> deleteEmployee(Long id);
+	
+	//public ResponseEntity<Employee> getEmployeeBycompanyId(Long companyId);
+
+	public ResponseEntity<Employee> getEmployeeBycompanyId(Long companyId);
 }

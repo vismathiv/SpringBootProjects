@@ -1,5 +1,7 @@
 package com.projects.Bench.entity;
 
+import java.util.Objects;
+
 import org.springframework.context.annotation.Bean;
 
 import jakarta.persistence.Column;
@@ -22,10 +24,29 @@ public class Skill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Pattern(regexp = "^[a-zA-Z]*$" , message="please provide valid name")
+	@Pattern(regexp = "^[a-zA-Z ]*$" , message="please provide valid name")
 	@Column(name="name")
 	private String name;
 	
+//	@ManyToOne
+//    @JoinColumn(name = "employee_id")
+//    private Employee employee;
+	
+	
+	
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Skill skill = (Skill) o;
+        return Objects.equals(name, skill.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 //	
 //	@ManyToOne
 //	private Employee employee;

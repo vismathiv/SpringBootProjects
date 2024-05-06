@@ -1,6 +1,7 @@
 package com.projects.Bench.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
@@ -27,21 +29,20 @@ public class Employee {
 	@Column(name="emp_id")
 	private Long id;
 	
-	@Pattern(regexp = "^[a-zA-Z]*$" , message=" valid name")
-	@Column(name="name")
+	@Pattern(regexp = "^[a-zA-Z ]*$" , message="please enter valid name")
+	@Column(name="name",unique=true)
 	private String name;
 	
 	@Digits(integer = 8, fraction = 0, message = "only 8 digits ")
-	@Column(name="company_Id")
+	@Column(name="company_Id",unique = true)
 	private Long companyId;
 	
-	@Email(message="please provide valid email")
-	@Column(name="email")
+	@Pattern(regexp="^[a-zA-Z]{2,8}[0-9]{2,3}@gmail.com$",message="email must have 2-8 letters only,2-3 digits only and end have @gmail.com")
+	@Column(name="email",unique=true)
 	private String email;
 	
-	@OneToMany(cascade =CascadeType.ALL)
-	@JoinColumn(name="emp_id_key", referencedColumnName ="emp_id")
-	private Set<Skill> skill;
+	 @OneToMany( cascade = CascadeType.ALL)
+	 private Set<Skill> skill = new HashSet<>();
 	
 	public Long getId() {
 		return id;

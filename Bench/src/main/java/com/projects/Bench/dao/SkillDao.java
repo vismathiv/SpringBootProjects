@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import com.projects.Bench.entity.Skill;
 import com.projects.Bench.repository.SkillRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class SkillDao {
 
 	
